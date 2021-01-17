@@ -1,0 +1,63 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'index.css' %}"> <!-- 이렇게 하면 앱 하위에 static이라는 디렉토리 내에서 index.css라는 파일을 자동으로 찾아서 헤더에 삽입해줍니다. -->
+
+<header class="header">
+    <h2 style="cursor: pointer;" onclick="location.href='/posts'">Blog Basic</h2>
+</header>
+
+<div class="row">
+    <div class="leftcolumn">
+    {% for post in posts %}
+        <div class="card" style=" cursor: pointer;" onclick="location.href='/posts/{{ post.id }}'"> <!-- 이 줄 변경 -->
+            <!-- view 템플릿 내에서 변수를 받을 때는 아래처럼 {{ ... }} 로 작성합니다. -->
+            <div class="thumbnail" style="background-image: url('{{ post.image_url }}');">
+                <img src="http://placehold.it/200x200" />
+            </div>
+            <div class="body">
+                <h2 class="title">{{ post.title }}</h2>
+                <h5 class="subtitle">{{ post.created_at }}</h5>
+                <p class="preview">{{ post.body }}</p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    <div class="rightcolumn">
+        <div class="card">
+            <div class="body">
+                <h2>About Me</h2>
+                <p>Some text about me here...</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="body">
+                <h3>Popular Post</h3>
+                <ul>
+                    <li>post 1</li>
+                    <li>post 2</li>
+                    <li>post 3</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <div class="body">
+                <h3>Follow Me</h3>
+                <p>Some links here...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <h2>Footer Here</h2>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+    const previews = document.getElementsByClassName("preview");
+    [...previews].forEach(
+        (element, index, array) => {
+            element.innerHTML = marked(element.innerHTML);
+        }
+    );
+</script>

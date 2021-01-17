@@ -1,0 +1,8 @@
+/* @import "~@coreui/coreui/scss/coreui"; */
+
+body {
+  font-family: Arial;
+  padding: 28px;
+  margin: 0px;
+  background: #f1f1f1;
+}

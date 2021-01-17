@@ -1,0 +1,23 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'get.css' %}">
+
+<header class="header">
+    <h2 style="cursor: pointer;" onclick="location.href='/posts'">Blog Basic</h2>
+</header>
+
+<div class="container">
+    <h1 class="title">{{ post.title }}</h1>
+    <h3 class="subtitle">{{ post.created_at }}</h3>
+    <img src='{{ post.image_url }}'/>
+    <div id="content" class="content">{{ post.body }}</div>
+</div>
+
+<footer class="footer">
+    <h2>Footer Here</h2>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+    document.getElementById('content').innerHTML = marked(document.getElementById('content').innerHTML);
+</script>
